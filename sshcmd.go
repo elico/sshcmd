@@ -110,10 +110,11 @@ func handleConn(conn net.Conn) {
 		W:     40,
 		Modes: modes,
 	}
-	err = sshclient.Pipe(conn, pty)
+	session, err := sshclient.Pipe(conn, pty, nil)
 	if err != nil {
 		fmt.Println(err)
 	}
+	defer session.Close()
 }
 
 func (s *server) Start() {
