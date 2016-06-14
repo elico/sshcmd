@@ -110,7 +110,7 @@ func handleConn(conn net.Conn) {
 		W:     40,
 		Modes: modes,
 	}
-	session, err := sshclient.Pipe(conn, pty, nil)
+	session, err := sshclient.Pipe(conn, pty, nil, 30)
 	if err != nil {
 		fmt.Println(err)
 	}
